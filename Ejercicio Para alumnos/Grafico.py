@@ -21,17 +21,23 @@ def seleccionar_color(mensaje):
 def calcular_figura(figura:dict, ventana):
     perimetro = None
     area = None
-    que_figura = "None"
+    que_figura = figura["tipo"]
     
     match que_figura:
         case "Circulo":
-            #COMPLETAR
+            area = calcular_area_circulo(figura["dimensiones"][0])
+            perimetro = calcular_perimetro_circulo(figura["dimensiones"][0])
+
             dibujar_circulo(ventana, figura)
         case "Rectangulo":
-            #COMPLETAR
+            area = calcular_area_rectangulo(figura["dimensiones"][0], figura["dimensiones"][1])
+            perimetro = calcular_perimetro_rectangulo(figura["dimensiones"][0], figura["dimensiones"][1])
+
             dibujar_rectangulo(ventana, figura)
         case "Triangulo":
-            #COMPLETAR
+            area = calcular_area_triangulo_rectangulo(figura["dimensiones"][0], figura["dimensiones"][1])
+            perimetro = calcular_perimetro_triangulo_rectangulo(figura["dimensiones"][0], figura["dimensiones"][1])
+            
             dibujar_triangulo(ventana, figura)
     
     escribir_resultados(ventana, perimetro, area)
@@ -80,8 +86,8 @@ def escribir_resultados(ventana, perimetro, area):
     area_texto = f"Area: {area:0.2f} px"
     
     fuente = pygame.font.SysFont("consolas",60)
-    texto = fuente.render(perimetro_texto, False, VERDE,AZUL_CLARO)
+    texto = fuente.render(perimetro_texto, False, colores["Verde"],colores["Azul Claro"])
     ventana.blit(texto,(50,700))
-    texto = fuente.render(area_texto, False, VERDE,AZUL_CLARO)
+    texto = fuente.render(area_texto, False, colores["Verde"],colores["Azul Claro"])
     ventana.blit(texto,(50,750))
 #endregion 
